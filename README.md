@@ -1,3 +1,3 @@
-# JSP_Practice
+# KH_JSP_Practice
 
-SpringFramework를 배우기 전 Servlet/JSP을 이해하기
+국비 교육 과정 Servlet ~ Springframework 까지의 기술들 다뤄보기

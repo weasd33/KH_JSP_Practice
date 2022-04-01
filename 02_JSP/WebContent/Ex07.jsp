@@ -8,11 +8,12 @@
 </head>
 <body>
 	<div align="center">
-		<%@ include file="include/header.jsp" %>
-		
+		<%-- <%@ include file="include/header.jsp" %> --%>
+		<jsp:include page="include/header.jsp"/>
 		<h1>본문 JSP 페이지입니다...</h1>
 		
-		<%@ include file="include/footer.jsp" %>
+		<%-- <%@ include file="include/footer.jsp" %> --%>
+		<jsp:include page="include/footer.jsp"/>
 	</div>
 </body>
 </html>

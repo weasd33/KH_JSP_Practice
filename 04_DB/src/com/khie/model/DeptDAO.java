@@ -104,6 +104,29 @@ public class DeptDAO {
 		
 		return result;
 	}// insertDept() - End
+
+	// 부서 삭제
+	public int deleteDept(int deptno) {
+		int result = 0;
+		
+		try {
+			// 1. DB에 전송할 쿼리문 작성
+			sql = "DELETE FROM DEPT WHERE DEPTNO = ?";
+			
+			// 2. 쿼리문 DB 전송 객체에 저장
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, deptno);
+			
+			// 3. 쿼리문 DB에 전송 및 실행
+			result = pstmt.executeUpdate(); // 성공 시 1 반환
+			
+			// 4. 자원 종료
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	}// deleteDept() - End
 }
 
 

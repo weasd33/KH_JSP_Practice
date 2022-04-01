@@ -49,12 +49,12 @@ public class InsertServlet extends HttpServlet {
     	
     	if(result > 0) { // 부서 추가 성공
     		out.println("<script>");
-    		out.println("alert('Success!!')");
+    		out.println("alert('Insert Success!!')");
     		out.println("location.href='select'");
     		out.println("</script>");
     	} else { // 부서 추가 실패
     		out.println("<script>");
-    		out.println("alert('Fail...')");
+    		out.println("alert('Insert Fail...')");
     		out.println("history.back()");
     		out.println("</script>");
     	}

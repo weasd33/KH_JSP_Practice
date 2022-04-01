@@ -22,7 +22,7 @@
 		
 		<table border="1" cellspacing="0" width="350">
 			<tr>
-				<th>부서No.</th> <th>부서위치</th> <th>부서명</th>
+				<th>부서No.</th> <th>부서위치</th> <th>부서명</th> <th>부서삭제</th>
 			</tr>
 			<%
 				if(dept.size() != 0) {
@@ -33,20 +33,21 @@
 				<td><%=dto.getDeptno() %></td>
 				<td><%=dto.getDname() %></td>
 				<td><%=dto.getLoc() %></td>
+				<td> <input type="button" value="부서삭제" onclick="location.href='delete?deptno=<%=dto.getDeptno() %>'"> </td>
 			</tr>
 			<%
 					}
 				} else {
 			%>
 			<tr>
-				<td colspan="3" align="center">
+				<td colspan="4" align="center">
 					<h2>검색된 레코드가 없습니다...</h2>
 				</td>
 			</tr>			
 			<%} %>
 			
 			<tr>
-				<td colspan="3" align="center">
+				<td colspan="4" align="center">
 					<input type="button" value="부서추가" onclick="location.href='insert.jsp'">
 				</td>
 			</tr>

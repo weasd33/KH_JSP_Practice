@@ -43,9 +43,13 @@
 					<h2>검색된 레코드가 없습니다...</h2>
 				</td>
 			</tr>			
-			<%
-				}
-			%>
+			<%} %>
+			
+			<tr>
+				<td colspan="3" align="center">
+					<input type="button" value="부서추가" onclick="location.href='insert.jsp'">
+				</td>
+			</tr>
 		</table>
 	</div>
 	

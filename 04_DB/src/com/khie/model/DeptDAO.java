@@ -78,6 +78,32 @@ public class DeptDAO {
 		
 		return list;
 	} // selectList() - End
+
+	// 부서 테이블 등록 메서드
+	public int insertDept(DeptDTO dto) {
+		int result = 0;
+		
+		try {
+			// 1. DB에 전송할 쿼리문 작성
+			sql = "INSERT INTO DEPT VALUES(?, ?, ?)";
+			
+			// 2. 쿼리문 DB 전송 객체에 저장
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, dto.getDeptno());
+			pstmt.setString(2, dto.getDname());
+			pstmt.setString(3, dto.getLoc());
+			
+			// 3. 쿼리문 DB에 전송 및 실행
+			result = pstmt.executeUpdate(); // 성공 시 1 반환
+			
+			// 4. 자원 종료
+			pstmt.close(); con.close();
+			
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	}// insertDept() - End
 }
 
 

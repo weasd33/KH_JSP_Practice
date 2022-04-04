@@ -19,11 +19,9 @@
 			<h1>MEMBER10 테이블 전체 목록</h1>
 		<hr width="30%" color="red"> <br>
 		
-		<table border="1" cellspacing="0" width="650">
+		<table border="1" cellspacing="0" width="350">
 			<tr>
-				<th>No.</th> <th>아이디</th> <th>이름</th>
-				<th>비밀번호</th> <th>나이</th> <th>마일리지</th>
-				<th>직업</th> <th>주소</th> <th>날짜</th> 
+				<th>No.</th> <th>아이디</th> <th>이름</th> <th>가입일</th>				  
 			</tr>
 			
 			<%
@@ -35,23 +33,24 @@
 					<td><%=dto.getNum() %></td>
 					<td><%=dto.getMemId() %></td>
 					<td><%=dto.getMemName() %></td>
-					<td><%=dto.getPwd() %></td>
-					<td><%=dto.getAge() %></td>
-					<td><%=dto.getMileage() %></td>
-					<td><%=dto.getJob() %></td>
-					<td><%=dto.getAddr() %></td>
-					<td><%=dto.getRegdate() %></td>
+					<td><%=dto.getRegdate().substring(0, 10) %></td>
 				</tr>
 			<%
 					}
 				} else {
 			%>
 				<tr>
-					<td colspan="9" align="center">
+					<td colspan="4" align="center">
 						<p>검색된 회원이 없습니다...</p>
 					</td>
 				</tr>
 			<%} %>
+				
+				<tr>
+					<td colspan="4" align="right">
+						<input type="button" value="회원등록" onclick="location.href='view/memberJoin.jsp'">
+					</td>
+				</tr>
 		</table>
 	</div>
 	

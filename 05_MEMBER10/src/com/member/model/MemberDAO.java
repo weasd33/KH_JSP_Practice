@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 public class MemberDAO {
 	
 	Connection con = null; // DB와 연동하는 객체	
@@ -23,7 +25,7 @@ public class MemberDAO {
 		
 		try {
 			// 1단계 : 오라클 드라이버 로딩
-			Class.forName(driver);
+			Class.forName(driver);	
 			
 			// 2단계 : 오라클 DB와 연결
 			con = DriverManager.getConnection(url, user, password);
@@ -73,4 +75,56 @@ public class MemberDAO {
 		
 		return list;
 	} // MemberList() - End
+
+	public int insertMember(MemberDTO dto) {
+		int result = 0;
+		int count = 0;
+		
+		try {
+			sql = "SELECT MAX(NUM) FROM MEMBER10";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO MEMBER10 VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getMemId());
+			pstmt.setString(3, dto.getMemName());
+			pstmt.setString(4, dto.getPwd());
+			pstmt.setInt(5, dto.getAge());
+			pstmt.setInt(6, dto.getMileage());
+			pstmt.setString(7, dto.getJob());
+			pstmt.setString(8, dto.getAddr());
+			result = pstmt.executeUpdate();
+			
+			pstmt.close(); rs.close(); con.close();			
+		} catch (SQLException e) { e.printStackTrace(); }
+	
+		return result;
+	} // insertMember() - End
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

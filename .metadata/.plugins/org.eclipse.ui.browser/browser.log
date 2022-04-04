@@ -25,3 +25,4 @@
 4월 04, 2022 10:01:59.26 [5392:10224:0404/100159.025:ERROR:device_event_log_impl.cc(214)] [10:01:59.024] USB: usb_service_win.cc:260 Failed to get device driver name: 요소가 없습니다. (0x490)
 4월 04, 2022 10:40:37.128 [11084:11972:0404/104037.127:ERROR:device_event_log_impl.cc(214)] [10:40:37.127] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
 4월 04, 2022 11:16:43.606 [11084:11972:0404/111643.605:ERROR:device_event_log_impl.cc(214)] [11:16:43.605] USB: usb_service_win.cc:260 Failed to get device driver name: 요소가 없습니다. (0x490)
+4월 04, 2022 14:38:27.976 [944:3160:0404/143827.975:ERROR:device_event_log_impl.cc(214)] [14:38:27.976] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.

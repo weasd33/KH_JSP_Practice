@@ -140,7 +140,68 @@ public class MemberDAO {
 		
 		return dto;
 	} // getContentMember() - End 
+
+	// Member10 테이블 회원 정보 수정
+	public int updateMember(MemberDTO dto) {
+		int result = 0;
+		
+		try {
+			sql = "SELECT PWD FROM MEMBER10 WHERE NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNum());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getString("PWD").equals(dto.getPwd())) { // 비밀번호 맞는 경우
+					sql = "UPDATE MEMBER10 SET "
+							+ "AGE = ?,"
+							+ "MILEAGE = ?,"
+							+ "JOB = ?,"
+							+ "ADDR = ? WHERE NUM = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, dto.getAge());
+					pstmt.setInt(2, dto.getMileage());
+					pstmt.setString(3, dto.getJob());
+					pstmt.setString(4, dto.getAddr());
+					pstmt.setInt(5, dto.getNum());
+					
+					result = pstmt.executeUpdate();
+				} else { // 비밀번호가 틀린 경우
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		
+		return result;
+	} // updateMember() - End
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

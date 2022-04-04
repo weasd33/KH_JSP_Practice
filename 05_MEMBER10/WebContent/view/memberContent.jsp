@@ -76,6 +76,14 @@
 					</td>
 				</tr>
 			<%} %>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="button" value="회원수정" onclick="location.href='update?num=<%=content.getNum() %>'">
+						<input type="button" value="회원삭제" 
+						onclick="if(confirm('삭제하시겠습니까?')) {location.href='delete?num=<%=content.getNum() %>'}	 else{return;}">
+						<input type="button" value="회원목록" onclick="location.href='select'">					
+					</td>
+				</tr>
 		</table> 
 	</div>
 </body>

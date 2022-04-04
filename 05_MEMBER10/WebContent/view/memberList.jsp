@@ -32,7 +32,10 @@
 				<tr>
 					<td><%=dto.getNum() %></td>
 					<td><%=dto.getMemId() %></td>
-					<td><%=dto.getMemName() %></td>
+					<td>
+						<a href="<%=request.getContextPath() %>/content?num=<%=dto.getNum() %>">
+								<%=dto.getMemName() %> </a>
+					</td>
 					<td><%=dto.getRegdate().substring(0, 10) %></td>
 				</tr>
 			<%

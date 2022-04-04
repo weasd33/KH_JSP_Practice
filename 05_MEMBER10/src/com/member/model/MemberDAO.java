@@ -76,6 +76,7 @@ public class MemberDAO {
 		return list;
 	} // MemberList() - End
 
+	// Member10 테이블 회원 등록
 	public int insertMember(MemberDTO dto) {
 		int result = 0;
 		int count = 0;
@@ -109,6 +110,36 @@ public class MemberDAO {
 	
 		return result;
 	} // insertMember() - End
+
+	// Member10 테이블 회원 정보 조회 
+	public MemberDTO getContentMember(int num) {
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			sql = "SELECT * FROM MEMBER10 WHERE NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNum(rs.getInt("NUM"));
+				dto.setMemId(rs.getString("MEMID"));
+				dto.setMemName(rs.getString("MEMNAME"));
+				dto.setPwd(rs.getString("PWD"));
+				dto.setAge(rs.getInt("AGE"));
+				dto.setMileage(rs.getInt("MILEAGE"));
+				dto.setJob(rs.getString("JOB"));
+				dto.setAddr(rs.getString("ADDR"));
+				dto.setRegdate(rs.getString("REGDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // getContentMember() - End 
 }
 
 

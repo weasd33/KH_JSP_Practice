@@ -179,6 +179,37 @@ public class MemberDAO {
 		
 		return result;
 	} // updateMember() - End
+
+	public int deleteMember(int num) {
+		int result = 0;
+		
+		try {
+			sql = "DELETE FROM MEMBER10 WHERE NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+
+			pstmt.close(); // con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteMember() - End
+
+	// 회원 번호 순번 재작업 
+	public void updateNum(int num) {
+		
+		try {
+			sql = "UPDATE MEMBER10 SET NUM = NUM - 1 WHERE NUM > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+	} // updateNum() - End
 }
 
 

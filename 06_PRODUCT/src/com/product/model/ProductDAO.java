@@ -147,6 +147,7 @@ public class ProductDAO {
 		return result;
 	}
 
+	// 제품 상세 정보 
 	public ProductDTO contentProduct(String pno) {
 		ProductDTO dto = new ProductDTO();
 		
@@ -173,6 +174,56 @@ public class ProductDAO {
 		} catch (SQLException e) { e.printStackTrace(); }
 		
 		return dto;
+	}
+
+	// 제품 삭제
+	public int deleteProduct(String pno) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "DELETE FROM PRODUCT WHERE PNO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pno);
+			result = pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	}
+
+	public int updateProduct(ProductDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE PRODUCT SET "
+					+ "PNAME = ?,"
+					+ "STOCK = ?,"
+					+ "PRICE = ?,"
+					+ "COMPANY = ?,"
+					+ "CNO = ?,"
+					+ "CNAME = ? WHERE PNO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getPname());
+			pstmt.setInt(2, dto.getStock());
+			pstmt.setInt(3, dto.getPrice());
+			pstmt.setString(4, dto.getCompany());
+			pstmt.setString(5, dto.getCno());
+			pstmt.setString(6, dto.getCname());
+			pstmt.setString(7, dto.getPno());
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
 	}
 }
 

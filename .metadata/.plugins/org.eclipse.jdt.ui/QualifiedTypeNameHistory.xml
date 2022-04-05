@@ -9,10 +9,15 @@
     <fullyQualifiedTypeName name="java.beans.Statement"/>
     <fullyQualifiedTypeName name="com.khie.model.DeptDTO"/>
     <fullyQualifiedTypeName name="com.khie.model.DeptDAO"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="com.member.model.MemberDAO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="sun.rmi.server.Dispatcher"/>
+    <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="org.apache.jasper.compiler.Node.ForwardAction"/>
+    <fullyQualifiedTypeName name="com.member.model.MemberDTO"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.xml.internal.serialize.Printer"/>
+    <fullyQualifiedTypeName name="com.member.model.MemberDAO"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>

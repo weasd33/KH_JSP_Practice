@@ -83,4 +83,82 @@ public class ProductDAO {
 		
 		return list;
 	}
+
+	public List<ProductDTO> getCategotyList() {
+		List<ProductDTO> list = new ArrayList<>();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT DISTINCT CNO, CNAME FROM PRODUCT ORDER BY CNO";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				
+				dto.setCno(rs.getString("CNO"));
+				dto.setCname(rs.getString("CNAME"));
+				
+				list.add(dto);
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return list;
+	}
+
+	// 상품 등록
+	public int insertProduct(ProductDTO dto) {
+		int result = 0, count = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT MAX(PNO) FROM PRODUCT";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = Integer.parseInt(rs.getString(1) + 1);
+			}
+			
+			sql = "INSERT INTO PRODUCT VALUES(?, ?, ?, ?, ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getPno());
+			pstmt.setString(2, dto.getPname());
+			pstmt.setInt(3, dto.getStock());
+			pstmt.setInt(4, dto.getPrice());
+			pstmt.setString(5, dto.getCompany());
+			pstmt.setString(6, dto.getCno());
+			pstmt.setString(7, dto.getCname());
+			
+			result = pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

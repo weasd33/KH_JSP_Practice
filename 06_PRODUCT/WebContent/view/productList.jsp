@@ -33,7 +33,8 @@
 						<tr>
 							<td><%=dto.getPno() %></td>
 							<td><%=dto.getCname() %></td>
-							<td><%=dto.getPname() %></td>
+							<td><a href="<%=request.getContextPath() %>/content?pno=<%=dto.getPno()%>">
+							<%=dto.getPname() %></a></td>
 							<td><%=dto.getCompany() %></td>
 						</tr>
 			<%		}
@@ -44,7 +45,12 @@
 							검색된 제품 목록이 없습니다...
 						</td>
 					</tr>
-			<%  } %>							
+			<%  } %>
+			<tr>
+				<td colspan="4" align="center">
+					<input type="button" value="상품등록" onclick="location.href='insert'">
+				</td>
+			</tr>							
 		</table>
 	</div>
 </body>

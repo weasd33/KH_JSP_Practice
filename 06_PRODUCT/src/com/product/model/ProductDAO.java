@@ -146,6 +146,34 @@ public class ProductDAO {
 		
 		return result;
 	}
+
+	public ProductDTO contentProduct(String pno) {
+		ProductDTO dto = new ProductDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM PRODUCT WHERE PNO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pno);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {			
+				dto.setPno(rs.getString("PNO"));
+				dto.setPname(rs.getString("PNAME"));
+				dto.setStock(rs.getInt("STOCK"));
+				dto.setPrice(rs.getInt("PRICE"));
+				dto.setCompany(rs.getString("COMPANY"));
+				dto.setCno(rs.getString("CNO"));
+				dto.setCname(rs.getString("CNAME"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	}
 }
 
 

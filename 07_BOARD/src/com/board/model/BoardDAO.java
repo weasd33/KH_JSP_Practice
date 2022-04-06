@@ -49,7 +49,7 @@ public class BoardDAO {
 			con = DriverManager.getConnection(url, user, password);
 			
 		} catch (Exception e) { e.printStackTrace(); }
-	}
+	} // openConn() - End
 
 	// 게시판 목록 전체 조회
 	public List<BoardDTO> selectBoard() {
@@ -83,7 +83,7 @@ public class BoardDAO {
 		} catch (SQLException e) { e.printStackTrace(); }
 		
 		return list;
-	}
+	} // selectBoard() - End
 
 	public int insertBoard(BoardDTO dto) {
 		int result = 0, count = 0;
@@ -113,11 +113,10 @@ public class BoardDAO {
 			result = pstmt.executeUpdate();
 			
 			rs.close(); pstmt.close(); con.close();
-		} catch (SQLException e) { e.printStackTrace(); }
-		
+		} catch (SQLException e) { e.printStackTrace(); }	
 		
 		return result;
-	}
+	} // insertBoard() - End
 
 	// 조회수 증가
 	public void hitBoard(int num) {
@@ -133,7 +132,7 @@ public class BoardDAO {
 			
 			pstmt.close(); con.close();			
 		} catch (SQLException e) { e.printStackTrace(); }
-	}
+	} // hitBoard() - End
 		
 	// 해당 게시글 정보
 	public BoardDTO contentBoard(int num) {
@@ -164,7 +163,43 @@ public class BoardDAO {
 		} catch (SQLException e) { e.printStackTrace(); }
 		
 		return dto;
-	}
+	} // contentBoard() - End
+
+	// 게시글 수정
+	public int updateBoard(BoardDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNo());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				// 수정 폼에서 입력한 비밀번호가 DB의 비밀번호와 같다면
+				if(dto.getPwd().equals(rs.getString("BOARD_PWD"))) {
+					sql = "UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, BOARD_UPDATE = SYSDATE WHERE BOARD_NO = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getTitle());
+					pstmt.setString(2, dto.getContent());
+					pstmt.setInt(3, dto.getNo());
+					
+					result = pstmt.executeUpdate();
+				} else { // 비밀번호가 일치하지 않는 경우
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateBoard() - End
 }
 
 

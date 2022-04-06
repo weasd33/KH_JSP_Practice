@@ -19,7 +19,7 @@
 			<h1>전체 글 목록</h1>
 		<hr width="30%" color="lightgray"> <br>
 		
-		<table border="1" cellspacing="0">
+		<table border="1" cellspacing="0" width="450">
 			<tr>
 				<th>번호</th> <th>제목</th> <th>작성자</th>
 				<th>조회수</th> <th>작성일</th> 

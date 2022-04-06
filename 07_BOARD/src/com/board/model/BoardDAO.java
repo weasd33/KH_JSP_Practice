@@ -118,6 +118,53 @@ public class BoardDAO {
 		
 		return result;
 	}
+
+	// 조회수 증가
+	public void hitBoard(int num) {
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE BOARD SET BOARD_HIT = BOARD_HIT + 1 WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();			
+		} catch (SQLException e) { e.printStackTrace(); }
+	}
+		
+	// 해당 게시글 정보
+	public BoardDTO contentBoard(int num) {
+		BoardDTO dto = new BoardDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNo(rs.getInt("BOARD_NO"));
+				dto.setWriter(rs.getString("BOARD_WRITER"));
+				dto.setTitle(rs.getString("BOARD_TITLE"));
+				dto.setContent(rs.getString("BOARD_CONTENT"));
+				dto.setPwd(rs.getString("BOARD_PWD"));
+				dto.setHit(rs.getInt("BOARD_HIT"));
+				dto.setDate(rs.getString("BOARD_DATE"));
+				dto.setUpdate(rs.getString("BOARD_UPDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	}
 }
 
 

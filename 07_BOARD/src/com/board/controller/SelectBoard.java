@@ -32,7 +32,7 @@ public class SelectBoard extends HttpServlet {
     	
     	request.setAttribute("selectAll", dto);
     	
-    	RequestDispatcher rd = request.getRequestDispatcher("view/selectAll.jsp");
+    	RequestDispatcher rd = request.getRequestDispatcher("view/boardSelectAll.jsp");
     	
     	rd.forward(request, response);
     }

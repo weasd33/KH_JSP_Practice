@@ -31,7 +31,9 @@
 			%>
 				<tr>
 					<td><%=dto.getNo() %></td>
-					<td><%=dto.getTitle() %></td>
+					<td>
+					<a href="<%=request.getContextPath() %>/content?no=<%=dto.getNo() %>"><%=dto.getTitle() %></a>
+					</td>
 					<td><%=dto.getWriter() %></td>
 					<td><%=dto.getHit() %></td>
 					<td><%=dto.getDate().substring(0, 10) %></td>
@@ -39,7 +41,11 @@
 			<%
 				}
 			%>
-			
+			<tr>
+				<td colspan="5" align="center">
+					<input type="button" value="글쓰기" onclick="location.href='view/boardWrite.jsp'">
+				</td>
+			</tr>			
 		</table>
 	</div>
 </body>

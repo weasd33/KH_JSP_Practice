@@ -200,6 +200,47 @@ public class BoardDAO {
 		
 		return result;
 	} // updateBoard() - End
+
+	// 게시글 삭제
+	public int deleteBoard(int no, String pwd) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT BOARD_PWD FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(pwd.equals(rs.getString("BOARD_PWD"))) { // 비밀번호가 일치하는 경우 삭제
+					sql = "DELETE FROM BOARD WHERE BOARD_NO = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					
+					result = pstmt.executeUpdate();
+				} else { // 비밀번호가 틀린 경우
+					result = -1;
+				}
+			}
+			
+			if(result == 1) { // 삭제 성공 시 글 번호 재정렬
+				sql = "UPDATE BOARD SET BOARD_NO = BOARD_NO - 1 WHERE BOARD_NO > ?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				pstmt.executeUpdate();
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteBoard() - End
 }
 
 

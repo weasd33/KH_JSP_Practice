@@ -13,6 +13,8 @@ C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch
 \08_ConnPool\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3838996931.index
 \03_Cookie_Session\src
+C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1010892944.index
+\09_EL_JSTL\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3775275901.index
 \07_BOARD\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2185986281.index

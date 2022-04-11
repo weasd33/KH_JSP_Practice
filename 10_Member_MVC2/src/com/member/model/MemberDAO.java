@@ -96,7 +96,7 @@ public class MemberDAO {
 		try {
 			openConn();
 			
-			sql = "SELECT MAX(NUM) FORM MEMBER10";
+			sql = "SELECT MAX(NUM) FROM MEMBER10";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -125,5 +125,36 @@ public class MemberDAO {
 		
 		return result;
 	} // insertMember() - End
+
+	public MemberDTO contentMember(int num) {
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM MEMBER10 WHERE NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNum(rs.getInt("NUM"));
+				dto.setMemId(rs.getString("MEMID"));
+				dto.setMemName(rs.getString("MEMNAME"));
+				dto.setPwd(rs.getString("PWD"));
+				dto.setAge(rs.getInt("AGE"));
+				dto.setMileage(rs.getInt("MILEAGE"));
+				dto.setJob(rs.getString("JOB"));
+				dto.setAddr(rs.getString("ADDR"));
+				dto.setRegdate(rs.getString("REGDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // contentMember() - End
 
 }

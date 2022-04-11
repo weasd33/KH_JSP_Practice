@@ -90,4 +90,40 @@ public class MemberDAO {
 		return list;		
 	} // getMemberList() - End
 
+	public int insertMember(MemberDTO dto) {
+		int result = 0, count = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT MAX(NUM) FORM MEMBER10";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO MEMBER10 VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getMemId());
+			pstmt.setString(3, dto.getMemName());
+			pstmt.setString(4, dto.getPwd());
+			pstmt.setInt(5, dto.getAge());
+			pstmt.setInt(6, dto.getMileage());
+			pstmt.setString(7, dto.getJob());
+			pstmt.setString(8, dto.getAddr());
+			
+			result = pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();			
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // insertMember() - End
+
 }

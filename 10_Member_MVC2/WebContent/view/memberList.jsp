@@ -26,7 +26,9 @@
 					<tr>
 						<td>${dto.getNum() }</td>
 						<td>${dto.getMemId() }</td>
-						<td>${dto.getMemName() }</td>
+						<td>
+						<a href="<%=request.getContextPath()%>/content.do?num=${dto.getNum() }">${dto.getMemName() }</a>	
+						</td>
 						<td>${dto.getRegdate().substring(0, 10) }</td>
 					</tr>
 				</c:forEach>
@@ -38,6 +40,12 @@
 					</td>
 				</tr>
 			</c:if>
+			
+			<tr>
+				<td colspan="4" align="center">
+					<input type="button" value="회원등록" onclick="location.href='insert.do'">
+				</td>
+			</tr>
 		</table>
 	</div>
 

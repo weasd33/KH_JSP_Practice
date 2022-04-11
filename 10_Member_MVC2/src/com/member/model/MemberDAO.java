@@ -57,6 +57,7 @@ public class MemberDAO {
 
 	} // openConn() - End
 
+	// 전체 목록 조회
 	public List<MemberDTO> getMemberList() {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		
@@ -90,6 +91,7 @@ public class MemberDAO {
 		return list;		
 	} // getMemberList() - End
 
+	// 회원 등록
 	public int insertMember(MemberDTO dto) {
 		int result = 0, count = 0;
 		
@@ -126,6 +128,7 @@ public class MemberDAO {
 		return result;
 	} // insertMember() - End
 
+	// 회원 상세 정보
 	public MemberDTO contentMember(int num) {
 		MemberDTO dto = new MemberDTO();
 		
@@ -157,4 +160,59 @@ public class MemberDAO {
 		return dto;
 	} // contentMember() - End
 
+	// 회원 정보 수정
+	public int updateMember(MemberDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT PWD FROM MEMBER10 WHERE NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNum());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(dto.getPwd().equals(rs.getString("PWD"))) { // 비밀번호가 일치 할 경우
+					sql = "UPDATE MEMBER10 SET"
+							+ " AGE = ?,"
+							+ " MILEAGE = ?,"
+							+ " JOB = ?,"
+							+ " ADDR = ?"
+							+ " WHERE NUM = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, dto.getAge());
+					pstmt.setInt(2, dto.getMileage());
+					pstmt.setString(3, dto.getJob());
+					pstmt.setString(4, dto.getAddr());
+					pstmt.setInt(5, dto.getNum());
+					
+					result = pstmt.executeUpdate();
+				} else { // 비밀번호가 일치하지 않을 경우
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateMember - End
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

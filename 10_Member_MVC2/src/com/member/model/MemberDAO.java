@@ -200,6 +200,26 @@ public class MemberDAO {
 		return result;
 	} // updateMember - End
 
+	// 회원 삭제
+	public int deleteMember(int num) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "DELETE FROM MEMBER10 WHERE NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			result = pstmt.executeUpdate();			
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	}// deleteMember - End
+
 }
 
 

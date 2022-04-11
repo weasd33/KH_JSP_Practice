@@ -48,6 +48,8 @@ public class FrontController extends HttpServlet{
 			action = new MemberUpdate();
 		} else if(command.equals("update_ok.do")) {
 			action = new MemberUpdateOk();
+		} else if(command.equals("delete.do")) {
+			action = new MemberDelete();
 		}
 		
 		String path1 = action.execute(request, response);

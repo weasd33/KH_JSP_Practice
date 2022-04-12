@@ -39,16 +39,23 @@ public class FrontController extends HttpServlet {
 		} else if(command.equals("write_ok.do")) { // 글 작성
 			action = new BoardWrite();
 			action.execute(request, response);
-		} else if(command.equals("content.do")) {
+		} else if(command.equals("content.do")) { // 글 상세 정보
 			action = new BoardContent();
 			action.execute(request, response);
 			viewPage = "view/BoardContent.jsp";
-		} else if(command.equals("update.do")) {
+		} else if(command.equals("update.do")) { // 글 수정 폼 페이지
 			action = new BoardContent();
 			action.execute(request, response);
 			viewPage = "view/BoardUpdate.jsp";
-		} else if(command.equals("update_ok.do")) {
+		} else if(command.equals("update_ok.do")) { // 글 수정
 			action = new BoardUpdate();
+			action.execute(request, response);
+		} else if(command.equals("delete.do")) { // 글 삭제 폼 페이지
+			action = new BoardDelete();
+			action.execute(request, response);
+			viewPage = "view/BoardDelete.jsp";
+		} else if(command.equals("delete_ok.do")) {
+			action = new BoardDeleteOk();
 			action.execute(request, response);
 		}
 		

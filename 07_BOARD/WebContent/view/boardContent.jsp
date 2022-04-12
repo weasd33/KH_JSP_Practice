@@ -81,7 +81,11 @@
 				<td colspan="2" align="center">
 					<input type="button" value="수정하기" onclick="location.href='update?no=<%=content.getNo() %>'">
 					<input type="button" value="삭제하기" 
-						onclick="if(confirm('정말로 삭제하시겠습니까?')) {location.href='view/boardDelete.jsp?no=<%=content.getNo() %>'} else { return; }">
+						onclick="if(confirm('정말로 삭제하시겠습니까?')) {
+							location.href='view/boardDelete.jsp?no=<%=content.getNo() %>'
+						} else { 
+							return; 
+						}">
 					<input type="button" value="전체목록" onclick="location.href='select'">
 				</td>
 			</tr>

@@ -169,10 +169,12 @@ public class BoardDAO {
 							+ " BOARD_TITLE = ?,"
 							+ " BOARD_CONTENT = ?"
 							+ " WHERE BOARD_NO = ?";
+					
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, dto.getTitle());
 					pstmt.setString(2, dto.getContent());
 					pstmt.setInt(3, dto.getNo());
+					
 					result = pstmt.executeUpdate();
 				} else {
 					result = -1;
@@ -184,6 +186,38 @@ public class BoardDAO {
 		
 		return result;
 	} // updateBoard() - End
+
+	// 글 삭제
+	public int deleteBoard(int no, String pwd) {
+		int result = 0;
+				
+		try {
+			openConn();
+			
+			sql = "SELECT BOARD_PWD FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(pwd.equals(rs.getString(1))) {
+					sql = "DELETE FROM BOARD WHERE BOARD_NO = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					
+					result = pstmt.executeUpdate();
+				} else {
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteBoard() - End
 }
 
 

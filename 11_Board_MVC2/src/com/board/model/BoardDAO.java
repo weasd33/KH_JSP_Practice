@@ -1,7 +1,6 @@
 package com.board.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,6 +82,108 @@ public class BoardDAO {
 		
 		return list;
 	} // selectAllBoard() - End
+
+	// 글 작성
+	public int writeBoard(BoardDTO dto) {
+		int result = 0, count = 0;
+		
+		try {			
+			openConn();
+			
+			sql = "SELECT MAX(BOARD_NO) FROM BOARD";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO BOARD VALUES (?, ?, ?, ?, ?, DEFAULT, SYSDATE, '')";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getWriter());
+			pstmt.setString(3, dto.getTitle());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getPwd());
+			result = pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // writeBoard - End
+
+	// 글 상세 정보
+	public BoardDTO contentBoard(int no) {
+		BoardDTO dto = new BoardDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNo(rs.getInt("BOARD_NO"));
+				dto.setWriter(rs.getString("BOARD_WRITER"));
+				dto.setTitle(rs.getString("BOARD_TITLE"));
+				dto.setContent(rs.getString("BOARD_CONTENT"));
+				dto.setPwd(rs.getString("BOARD_PWD"));
+				dto.setHit(rs.getInt("BOARD_HIT"));
+				dto.setDate(rs.getString("BOARD_DATE"));
+				dto.setUpdate(rs.getString("BOARD_UPDATE"));
+			}
+			
+			sql = "UPDATE BOARD SET BOARD_HIT = BOARD_HIT + 1 WHERE BOARD_NO = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // contentBoard() - End
+
+	// 글 수정
+	public int updateBoard(BoardDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT BOARD_PWD FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNo());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(dto.getPwd().equals(rs.getString(1))) {
+					sql = "UPDATE BOARD SET"
+							+ " BOARD_TITLE = ?,"
+							+ " BOARD_CONTENT = ?"
+							+ " WHERE BOARD_NO = ?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, dto.getTitle());
+					pstmt.setString(2, dto.getContent());
+					pstmt.setInt(3, dto.getNo());
+					result = pstmt.executeUpdate();
+				} else {
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateBoard() - End
 }
 
 

@@ -46,7 +46,7 @@
 
 			<tr>
 				<td colspan="5" align="center">
-					<input type="button" value="글쓰기" onclick="location.href='view/boardWrite.jsp'">
+					<input type="button" value="글쓰기" onclick="location.href='write.do'">
 				</td>
 			</tr>	
 		</table> <br>

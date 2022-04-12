@@ -33,6 +33,23 @@ public class FrontController extends HttpServlet {
 			action = new BoardSelectAll();
 			action.execute(request, response);
 			viewPage = "view/BoardSelectAll.jsp";
+		} else if(command.equals("write.do")) { // 글 작성 폼 페이지
+			// 데이터를 가지고 갈 필요 없기 때문에 action은 생략
+			viewPage = "view/BoardWrite.jsp";
+		} else if(command.equals("write_ok.do")) { // 글 작성
+			action = new BoardWrite();
+			action.execute(request, response);
+		} else if(command.equals("content.do")) {
+			action = new BoardContent();
+			action.execute(request, response);
+			viewPage = "view/BoardContent.jsp";
+		} else if(command.equals("update.do")) {
+			action = new BoardContent();
+			action.execute(request, response);
+			viewPage = "view/BoardUpdate.jsp";
+		} else if(command.equals("update_ok.do")) {
+			action = new BoardUpdate();
+			action.execute(request, response);
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

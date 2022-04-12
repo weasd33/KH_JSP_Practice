@@ -218,6 +218,47 @@ public class BoardDAO {
 		
 		return result;
 	} // deleteBoard() - End
+
+	// 글 검색
+	public List<BoardDTO> searchBoard(String field, String keyword) {
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		
+		try {
+			openConn();
+			
+			if(field.equals("title")) { // 제목으로 검색
+				sql = "SELECT * FROM BOARD WHERE BOARD_TITLE LIKE ?";
+			} else if(field.equals("content")) { // 내용으로 검색
+				sql = "SELECT * FROM BOARD WHERE BOARD_CONTENT LIKE ?";
+			} else if(field.equals("title_content")) { // 제목 + 내용으로 검색
+				sql = "SELECT * FROM BOARD WHERE BOARD_TITLE || BOARD_CONTENT LIKE ?";
+			} else { // 작성자로 검색
+				sql = "SELECT * FROM BOARD WHERE BOARD_WRITER LIKE ?";
+			}
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				
+				dto.setNo(rs.getInt("BOARD_NO"));
+				dto.setWriter(rs.getString("BOARD_WRITER"));
+				dto.setTitle(rs.getString("BOARD_TITLE"));
+				dto.setContent(rs.getString("BOARD_CONTENT"));
+				dto.setPwd(rs.getString("BOARD_PWD"));
+				dto.setHit(rs.getInt("BOARD_HIT"));
+				dto.setDate(rs.getString("BOARD_DATE"));
+				dto.setUpdate(rs.getString("BOARD_UPDATE"));
+				
+				list.add(dto);				
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return list;
+	} // searchBoard - End 
 }
 
 

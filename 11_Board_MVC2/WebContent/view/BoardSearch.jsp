@@ -11,7 +11,7 @@
 <body>
 <div align="center">
 		<hr width="30%" color="red">
-			<h1>전체 글 목록</h1>
+			<h1>검색 결과</h1>
 		<hr width="30%" color="red"> <br>
 		
 		<table border="1" cellspacing="0" width="450">

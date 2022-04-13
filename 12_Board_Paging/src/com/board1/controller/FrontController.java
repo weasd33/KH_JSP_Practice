@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.board1.action.Action;
+import com.board1.action.BoardContent;
 import com.board1.action.BoardListAction;
+import com.board1.action.BoardUpdate;
+import com.board1.action.BoardUpdateOk;
+import com.board1.action.BoardWriteOk;
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +34,22 @@ public class FrontController extends HttpServlet {
 			action = new BoardListAction();
 			action.execute(request, response);
 			viewPage = "view/boardList.jsp";
+		} else if(command.equals("board_write.do")) {
+			viewPage = "view/boardWrite.jsp";
+		} else if(command.equals("board_write_ok.do")) {
+			action = new BoardWriteOk();
+			action.execute(request, response);
+		} else if(command.equals("board_content.do")) {
+			action = new BoardContent();
+			action.execute(request, response);
+			viewPage = "view/boardContent.jsp";
+		} else if(command.equals("update.do")) {
+			action = new BoardUpdate();
+			action.execute(request, response);
+			viewPage = "view/boardUpdate.jsp";
+		} else if(command.equals("update_ok.do")) {
+			action = new BoardUpdateOk();
+			action.execute(request, response);
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

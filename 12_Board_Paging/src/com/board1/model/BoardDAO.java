@@ -115,6 +115,114 @@ public class BoardDAO {
 		return list;
 	} // getBoardList() - End
 
+	// 글 등록
+	public int insertBoard(BoardDTO dto) {
+		int result = 0, count = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT MAX(BOARD_NO) FROM BOARD";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO BOARD VALUES(?, ?, ?, ?, ?, DEFAULT, SYSDATE, '')";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getWriter());
+			pstmt.setString(3, dto.getTitle());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getPwd());
+			
+			result = pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // insertBoard() - End
+
+	// 조회수 증가
+	public void boardHit(int no) {
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE BOARD SET BOARD_HIT = BOARD_HIT + 1 WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+	} // boardHit() - End
+
+	// 글 상세정보
+	public BoardDTO BoardContent(int no) {
+		BoardDTO dto = new BoardDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM BOARD WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNo(rs.getInt("BOARD_NO"));
+				dto.setWriter(rs.getString("BOARD_WRITER"));
+				dto.setTitle(rs.getString("BOARD_TITLE"));
+				dto.setContent(rs.getString("BOARD_CONTENT"));
+				dto.setPwd(rs.getString("BOARD_PWD"));
+				dto.setHit(rs.getInt("BOARD_HIT"));
+				dto.setDate(rs.getString("BOARD_DATE"));
+				dto.setUpdate(rs.getString("BOARD_UPDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // BoardContent() - End
+
+	// 글 수정
+	public int updateBoard(BoardDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE BOARD SET BOARD_TITLE = ?,"
+					+ " BOARD_CONTENT = ?,"
+					+ " BOARD_UPDATE = SYSDATE"
+					+ " WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setInt(3, dto.getNo());
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();			
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateBoard() - End
+
 }
 
 

@@ -13,6 +13,20 @@
 			<h1>게시물 전체 리스트</h1>
 		<hr width="30%" color="red"> <br>
 		
+		<form method="post" action="<%=request.getContextPath() %>/search.do">
+			<select name="search_field">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+				<option value="title_content">제목+내용</option>
+				<option value="writer">작성자</option>
+			</select>
+			
+			<input name="search_keyword">
+			<input type="submit" value="검색">		
+		</form> 
+		
+		<br>
+		
 		<table border="1" cellspacing="0" width="400">
 			<tr>
 				<th>No.</th> <th>제목</th>
@@ -68,7 +82,18 @@
 		<c:if test="${endBlock < allPage }">
 			<a href="board_list.do?page=${endBlock + 1 }">다음</a>
 			<a href="board_list.do?page=${allPage }">끝</a>
-		</c:if>
+		</c:if>		
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

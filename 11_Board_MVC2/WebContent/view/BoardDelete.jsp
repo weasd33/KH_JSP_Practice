@@ -8,7 +8,7 @@
 <title>BOARD</title>
 </head>
 <body>
-<div align="center">
+	<div align="center">
 		<hr width="30%" color="gray">
 			<h1>게시글 삭제 페이지</h1>
 		<hr width="30%" color="gray"> <br>

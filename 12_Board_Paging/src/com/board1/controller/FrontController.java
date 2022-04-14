@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.board1.action.Action;
 import com.board1.action.BoardContent;
+import com.board1.action.BoardDelete;
+import com.board1.action.BoardDeleteOk;
 import com.board1.action.BoardListAction;
+import com.board1.action.BoardSearch;
 import com.board1.action.BoardUpdate;
 import com.board1.action.BoardUpdateOk;
 import com.board1.action.BoardWriteOk;
@@ -50,6 +53,17 @@ public class FrontController extends HttpServlet {
 		} else if(command.equals("update_ok.do")) {
 			action = new BoardUpdateOk();
 			action.execute(request, response);
+		} else if(command.equals("delete.do")) {
+			action = new BoardDelete();
+			action.execute(request, response);
+			viewPage = "view/boardDelete.jsp";
+		} else if(command.equals("delete_ok.do")) {
+			action = new BoardDeleteOk();
+			action.execute(request, response);
+		} else if(command.equals("search.do")) {
+			action = new BoardSearch();
+			action.execute(request, response);
+			viewPage = "view/boardSearch.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

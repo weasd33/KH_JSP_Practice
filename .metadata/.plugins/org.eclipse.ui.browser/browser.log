@@ -73,3 +73,7 @@
 4월 13, 2022 11:23:30.737 [12176:17916:0413/112330.736:ERROR:interface_endpoint_client.cc(659)] Message 1 rejected by interface blink.mojom.WidgetHost
 4월 13, 2022 15:04:43.447 [12176:17916:0413/150443.446:ERROR:device_event_log_impl.cc(214)] [15:04:43.446] USB: usb_service_win.cc:260 Failed to get device driver name: 요소가 없습니다. (0x490)
 4월 13, 2022 15:51:41.812 [12176:16236:0413/155141.811:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+
+4월 14, 2022 09:48:31.773 NEW SESSION
+4월 14, 2022 09:48:31.773 [14168:1236:0414/094831.771:ERROR:device_event_log_impl.cc(214)] [09:48:31.771] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 14, 2022 09:49:28.427 [14168:5416:0414/094928.427:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater

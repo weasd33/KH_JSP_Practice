@@ -10,7 +10,7 @@
 <body>
 	<div align="center">
 		<hr width="30%" color="red">
-			<h1>게시물 전체 리스트</h1>
+			<h1>게시물 검색 리스트</h1>
 		<hr width="30%" color="red"> <br>
 		
 		<form method="post" action="<%=request.getContextPath() %>/search.do">
@@ -58,6 +58,7 @@
 			
 			<tr>
 				<td colspan="4" align="right">
+					<input type="button" value="전체목록" onclick="location.href='board_list.do?page=1'">
 					<input type="button" value="글쓰기" onclick="location.href='board_write.do'">
 				</td>
 			</tr>
@@ -65,23 +66,24 @@
 		
 		<br>
 		
+		<%-- 검색 페이징 처리 --%>
 		<c:if test="${page > block}">
-			<a href="board_list.do?page=1">처음</a>
-			<a href="board_list.do?page=${startBlock -1 }">이전</a>
+			<a href="board_search.do?page=1&search_field=${searchField }&search_keyword=${search_keyword }">처음</a>
+			<a href="board_search.do?page=${startBlock -1 }&search_field=${searchField }&search_keyword=${search_keyword }">이전</a>
 		</c:if>
 		<c:forEach begin="${startBlock }" end="${endBlock }" var="i">
 			<c:if test="${i == page }">
-				<b><a href="board_list.do?page=${i }">[${i }]</a></b>
+				<b><a href="board_search.do?page=${i }&search_field=${searchField }&search_keyword=${search_keyword }">[${i }]</a></b>
 			</c:if>
 					
 			<c:if test="${i != page }">
-				<a href="board_list.do?page=${i }">[${i }]</a>
+				<a href="board_search.do?page=${i }&search_field=${searchField }&search_keyword=${search_keyword }">[${i }]</a>
 			</c:if>				
 		</c:forEach>
 		
 		<c:if test="${endBlock < allPage }">
-			<a href="board_list.do?page=${endBlock + 1 }">다음</a>
-			<a href="board_list.do?page=${allPage }">끝</a>
+			<a href="board_search.do?page=${endBlock + 1 }&search_field=${searchField }&search_keyword=${search_keyword }">다음</a>
+			<a href="board_search.do?page=${allPage }&search_field=${searchField }&search_keyword=${search_keyword }">끝</a>
 		</c:if>		
 	</div>
 </body>

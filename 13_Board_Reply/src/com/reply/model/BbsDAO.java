@@ -87,6 +87,90 @@ public class BbsDAO {
 		
 		return list;
 	} // getBbsList() - End
+
+	// 글 등록
+	public int insertBoard(BbsDTO dto) {
+		int result = 0, count = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT MAX(BOARD_NO) FROM JSP_BBS";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO JSP_BBS VALUES(?, ?, ?, ?, ?, DEFAULT, SYSDATE, '', ?, 0, 0)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getWriter());
+			pstmt.setString(3, dto.getTitle());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getPwd());
+			pstmt.setInt(6, count);
+			
+			result = pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // insertBoard() - End
+	
+	// 글 조회수 증가
+	public void bbsHit(int no) {
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE JSP_BBS SET BOARD_HIT = BOARD_HIT + 1 WHERE BOARD_NO";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	}
+	
+	// 글 상세 정보
+	public BbsDTO getBbsContent(int no) {
+		BbsDTO dto = new BbsDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM JSP_BBS WHERE BOARD_NO = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNo(rs.getInt("BOARD_NO"));
+				dto.setWriter(rs.getString("BOARD_WRITER"));
+				dto.setTitle(rs.getString("BOARD_TITLE"));
+				dto.setContent(rs.getString("BOARD_CONTENT"));
+				dto.setPwd(rs.getString("BOARD_PWD"));
+				dto.setHit(rs.getInt("BOARD_HIT"));
+				dto.setDate(rs.getString("BOARD_DATE"));
+				dto.setUpdate(rs.getString("BOARD_UPDATE"));
+				dto.setGroup(rs.getInt("BOARD_GROUP"));
+				dto.setStep(rs.getInt("BOARD_STEP"));
+				dto.setIndent(rs.getInt("BOARD_INDENT"));
+			}
+			
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	}
 }
 
 

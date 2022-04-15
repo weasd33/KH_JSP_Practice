@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BOARD</title>
 </head>
 <body>
 	<div align="center">
@@ -24,7 +24,9 @@
 				<c:forEach items="${list }" var="dto">
 					<tr>
 						<td>${dto.getNo() }</td>
-						<td>${dto.getTitle() }</td>
+						<td>
+							<a href="<%=request.getContextPath() %>/bbs_content.do?no=${dto.getNo() }">${dto.getTitle() }</a>	
+						</td>
 						<td>${dto.getHit() }</td>
 						<td>${dto.getDate().substring(0, 10) }</td>
 						<td>${dto.getGroup() }</td>

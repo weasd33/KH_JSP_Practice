@@ -139,7 +139,7 @@ public class BbsDAO {
 			
 			pstmt.close(); con.close();
 		} catch (SQLException e) { e.printStackTrace(); }
-	}
+	} // bbsHit() - End
 	
 	// 글 상세 정보
 	public BbsDTO getBbsContent(int no) {
@@ -170,6 +170,43 @@ public class BbsDAO {
 		} catch (SQLException e) { e.printStackTrace(); }
 		
 		return dto;
+	} // getBbsContent() - End
+
+	public int updateBbs(BbsDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT BOARD_PWD FROM JSP_BBS WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNo());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(dto.getPwd().equals(rs.getString(1))) {
+					sql = "UPDATE JSP_BBS SET"
+							+ " BOARD_TITLE = ?, BOARD_CONTENT = ?,"
+							+ " BOARD_UPDATE = SYSDATE WHERE BOARD_NO = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, dto.getTitle());
+					pstmt.setString(2, dto.getContent());
+					pstmt.setInt(3, dto.getNo());
+					
+					result = pstmt.executeUpdate();
+				} else {
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
 	}
 }
 

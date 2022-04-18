@@ -172,6 +172,7 @@ public class BbsDAO {
 		return dto;
 	} // getBbsContent() - End
 
+	// 글 수정
 	public int updateBbs(BbsDTO dto) {
 		int result = 0;
 		
@@ -198,6 +199,46 @@ public class BbsDAO {
 					pstmt.setInt(3, dto.getNo());
 					
 					result = pstmt.executeUpdate();
+				} else {
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateBbs() - End
+
+	public int deleteBbs(int no, String pwd) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT BOARD_PWD FROM JSP_BBS WHERE BOARD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(pwd.equals(rs.getString(1))) {
+					sql = "DELETE FROM JSP_BBS WHERE BOARD_NO = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					
+					result = pstmt.executeUpdate();
+					
+					sql = "UPDATE JSP_BBS SET BOARD_NO = BOARD_NO - 1"
+							+ " WHERE BOARD_NO > ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					
+					pstmt.executeUpdate();
 				} else {
 					result = -1;
 				}

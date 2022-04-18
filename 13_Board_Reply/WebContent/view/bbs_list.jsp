@@ -25,6 +25,13 @@
 					<tr>
 						<td>${dto.getNo() }</td>
 						<td>
+							<%-- 댓글인 경우 --%>
+							<c:if test="${dto.getIndent() != 0 }">
+								<c:forEach begin="1" end="${dto.getIndent() }">
+									☞
+								</c:forEach>
+							</c:if>
+						
 							<a href="<%=request.getContextPath() %>/bbs_content.do?no=${dto.getNo() }">${dto.getTitle() }</a>	
 						</td>
 						<td>${dto.getHit() }</td>

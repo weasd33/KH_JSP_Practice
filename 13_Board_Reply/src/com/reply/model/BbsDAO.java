@@ -210,6 +210,7 @@ public class BbsDAO {
 		return result;
 	} // updateBbs() - End
 
+	// 글 삭제
 	public int deleteBbs(int no, String pwd) {
 		int result = 0;
 		
@@ -232,7 +233,9 @@ public class BbsDAO {
 					
 					result = pstmt.executeUpdate();
 					
-					sql = "UPDATE JSP_BBS SET BOARD_NO = BOARD_NO - 1"
+					sql = "UPDATE JSP_BBS SET"
+							+ " BOARD_NO = BOARD_NO - 1,"
+							+ " BOARD_GROUP = BOARD_GROUP - 1"
 							+ " WHERE BOARD_NO > ?";
 					
 					pstmt = con.prepareStatement(sql);
@@ -248,7 +251,62 @@ public class BbsDAO {
 		} catch (SQLException e) { e.printStackTrace(); }
 		
 		return result;
-	}
+	} // deleteBbs() - End
+
+	// 댓글의 step 1 증가
+	public void replyUpdate(int group, int step) {
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE JSP_BBS SET BOARD_STEP = BOARD_STEP + 1"
+					+ " WHERE BOARD_GROUP = ? AND BOARD_STEP > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, group);
+			pstmt.setInt(2, step);
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	} // replyUpdate() - End
+
+	// 원글에 댓글 추가
+	public int replyBbs(BbsDTO dto) {
+		int result = 0, count = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT MAX(BOARD_NO) FROM JSP_BBS";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt(1) + 1;
+			}
+			
+			sql = "INSERT INTO JSP_BBS VALUES(?, ?, ?, ?, ?, DEFAULT, SYSDATE, '', ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			pstmt.setString(2, dto.getWriter());
+			pstmt.setString(3, dto.getTitle());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getPwd());
+			pstmt.setInt(6, dto.getGroup());
+			pstmt.setInt(7, dto.getStep() + 1);
+			pstmt.setInt(8, dto.getIndent() + 1);
+			
+			result = pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // replyBbs() - End
 }
 
 

@@ -33,21 +33,21 @@
     <fullyQualifiedTypeName name="com.board1.action.Action"/>
     <fullyQualifiedTypeName name="com.board1.model.BoardDTO"/>
     <fullyQualifiedTypeName name="com.board1.model.BoardDAO"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="sun.jvm.hotspot.code.AdapterBlob"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
-    <fullyQualifiedTypeName name="com.reply.action.Action"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="sun.util.locale.StringTokenIterator"/>
     <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-    <fullyQualifiedTypeName name="com.reply.model.BbsDAO"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.reply.action.Action"/>
+    <fullyQualifiedTypeName name="com.reply.model.BbsDAO"/>
     <fullyQualifiedTypeName name="com.reply.action.ActionForward"/>
 </qualifiedTypeNameHistroy>

@@ -117,6 +117,56 @@ public class UploadDAO {
 		
 		return result;
 	} // insertUpload() - End
+
+	// 조회수 증가
+	public void uploadHit(int no) {
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE UPLOAD SET"
+					+ " UPLOAD_HIT = UPLOAD_HIT + 1"
+					+ " WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	} // uploadHit() - End
+
+	// 상세내역
+	public UploadDTO uploadContent(int no) {
+		UploadDTO dto = new UploadDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM UPLOAD WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNo(rs.getInt("UPLOAD_NO"));
+				dto.setWriter(rs.getString("UPLOAD_WRITER"));
+				dto.setTitle(rs.getString("UPLOAD_TITLE"));
+				dto.setContent(rs.getString("UPLOAD_CONTENT"));
+				dto.setPwd(rs.getString("UPLOAD_PWD"));
+				dto.setFile(rs.getString("UPLOAD_FILE"));
+				dto.setHit(rs.getInt("UPLOAD_HIT"));
+				dto.setDate(rs.getString("UPLOAD_DATE"));
+				dto.setUpdate(rs.getString("UPLOAD_UPDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // uploadContent() - End
 }
 
 

@@ -89,3 +89,9 @@
 4월 18, 2022 09:26:55.823 [14744:3824:0418/092655.819:ERROR:device_event_log_impl.cc(214)] [09:26:55.820] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
 4월 18, 2022 09:27:52.88 [14744:1268:0418/092752.087:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
 4월 18, 2022 14:27:52.97 [14744:1268:0418/142752.096:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 18, 2022 20:43:26.821 [14744:7368:0418/204326.818:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 18, 2022 20:43:26.892 [14744:8088:0418/204326.891:ERROR:connection_factory_impl.cc(425)] Failed to connect to MCS endpoint with error -105
+
+4월 19, 2022 09:49:43.231 NEW SESSION
+4월 19, 2022 09:49:43.231 [10260:12196:0419/094943.229:ERROR:device_event_log_impl.cc(214)] [09:49:43.229] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 09:50:40.97 [10260:7268:0419/095040.097:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater

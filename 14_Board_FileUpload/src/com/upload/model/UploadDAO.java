@@ -215,6 +215,46 @@ public class UploadDAO {
 		
 		return result;
 	} // updateUpload() - End
+
+	// 글 삭제
+	public int deleteUpload(int no, String pwd) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "SELECT UPLOAD_PWD FROM UPLOAD WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(pwd.equals(rs.getString(1))) {
+					sql = "DELETE FROM UPLOAD WHERE UPLOAD_NO = ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					
+					result = pstmt.executeUpdate();
+					
+					sql = "UPDATE UPLOAD SET UPLOAD_NO = UPLOAD_NO - 1 WHERE UPLOAD_NO > ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					
+					pstmt.executeUpdate();
+				} else {
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteUpload() - End
 }
 
 

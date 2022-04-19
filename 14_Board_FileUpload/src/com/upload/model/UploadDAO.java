@@ -117,6 +117,131 @@ public class UploadDAO {
 		
 		return result;
 	} // insertUpload() - End
+
+	// 조회수 증가
+	public void uploadHit(int no) {
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE UPLOAD SET"
+					+ " UPLOAD_HIT = UPLOAD_HIT + 1"
+					+ " WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+	} // uploadHit() - End
+
+	// 상세 내역
+	public UploadDTO uploadContent(int no) {
+		UploadDTO dto = new UploadDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM UPLOAD WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setNo(rs.getInt("UPLOAD_NO"));
+				dto.setWriter(rs.getString("UPLOAD_WRITER"));
+				dto.setTitle(rs.getString("UPLOAD_TITLE"));
+				dto.setContent(rs.getString("UPLOAD_CONTENT"));
+				dto.setPwd(rs.getString("UPLOAD_PWD"));
+				dto.setFile(rs.getString("UPLOAD_FILE"));
+				dto.setHit(rs.getInt("UPLOAD_HIT"));
+				dto.setDate(rs.getString("UPLOAD_DATE"));
+				dto.setUpdate(rs.getString("UPLOAD_UPDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // uploadContent() - End
+
+	// 글 수정
+	public int updateUpload(UploadDTO dto) {
+		int result = 0;
+
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM UPLOAD WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNo());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(dto.getPwd().equals(rs.getString("UPLOAD_PWD"))) { // 비밀번호가 맞는 경우
+					if(dto.getFile() == null) { // 첨부파일이 없는 경우
+						sql = "UPDATE UPLOAD SET UPLOAD_TITLE = ?,"
+								+ " UPLOAD_CONTENT = ?, UPLOAD_UPDATE = SYSDATE"
+								+ " WHERE UPLOAD_NO = ?";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getTitle());
+						pstmt.setString(2, dto.getContent());
+						pstmt.setInt(3, dto.getNo());
+					} else { // 첨부파일이 있는 경우
+						sql = "UPDATE UPLOAD SET UPLOAD_TITLE = ?,"
+								+ " UPLOAD_CONTENT = ?, UPLOAD_FILE = ?,"
+								+ " UPLOAD_UPDATE = SYSDATE WHERE UPLOAD_NO = ?";
+						
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, dto.getTitle());
+						pstmt.setString(2, dto.getContent());
+						pstmt.setString(3, dto.getFile());
+						pstmt.setInt(4, dto.getNo());
+					}
+					result = pstmt.executeUpdate();
+				} else { // 비밀번호가 틀린 경우
+					result = -1;
+				}
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateUpload() - End
+
+	// 글 삭제
+	public int deleteUpload(int no, String pwd) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "DELETE FROM UPLOAD WHERE UPLOAD_NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+			sql = "UPDATE UPLOAD SET UPLOAD_NO = UPLOAD_NO - 1 WHERE UPLOAD_NO > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteUpload() - End
 }
 
 

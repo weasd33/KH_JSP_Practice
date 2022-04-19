@@ -44,10 +44,19 @@
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.reply.action.Action"/>
+    <fullyQualifiedTypeName name="com.reply.model.BbsDTO"/>
     <fullyQualifiedTypeName name="com.reply.model.BbsDAO"/>
     <fullyQualifiedTypeName name="com.reply.action.ActionForward"/>
+    <fullyQualifiedTypeName name="com.upload.action.Action"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="com.upload.model.UploadDTO"/>
+    <fullyQualifiedTypeName name="com.upload.model.UploadDAO"/>
+    <fullyQualifiedTypeName name="com.upload.action.ActionForward"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>

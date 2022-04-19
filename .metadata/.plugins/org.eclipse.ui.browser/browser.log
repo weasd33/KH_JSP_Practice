@@ -89,3 +89,19 @@
 4월 18, 2022 09:26:55.823 [14744:3824:0418/092655.819:ERROR:device_event_log_impl.cc(214)] [09:26:55.820] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
 4월 18, 2022 09:27:52.88 [14744:1268:0418/092752.087:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
 4월 18, 2022 14:27:52.97 [14744:1268:0418/142752.096:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 18, 2022 20:43:26.821 [14744:7368:0418/204326.818:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 18, 2022 20:43:26.892 [14744:8088:0418/204326.891:ERROR:connection_factory_impl.cc(425)] Failed to connect to MCS endpoint with error -105
+
+4월 19, 2022 09:49:43.231 NEW SESSION
+4월 19, 2022 09:49:43.231 [10260:12196:0419/094943.229:ERROR:device_event_log_impl.cc(214)] [09:49:43.229] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 09:50:40.97 [10260:7268:0419/095040.097:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 19, 2022 10:48:52.881 [3876:16520:0419/104852.881:ERROR:device_event_log_impl.cc(214)] [10:48:52.881] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 10:49:48.866 [3876:12552:0419/104948.865:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 19, 2022 11:37:13.445 [3876:15016:0419/113713.444:ERROR:database.cc(1782)] Passwords SQLite error: code 2067 errno 0: UNIQUE constraint failed: logins.origin_url, logins.username_element, logins.username_value, logins.password_element, logins.signon_realm sql: INSERT INTO logins (origin_url, action_url, username_element, username_value, password_element, password_value, submit_element, signon_realm, date_created, blacklisted_by_user, scheme, password_type, times_used, form_data, display_name, icon_url, federation_url, skip_zero_click, generation_upload_status, possible_username_pairs, id, date_last_used, moving_blocked_for, date_password_modified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+4월 19, 2022 14:34:31.914 [13092:9020:0419/143431.912:ERROR:device_event_log_impl.cc(214)] [14:34:31.912] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 14:35:28.475 [13092:3716:0419/143528.473:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 19, 2022 15:27:48.332 [15020:1196:0419/152748.331:ERROR:device_event_log_impl.cc(214)] [15:27:48.332] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 15:28:47.350 [11480:16204:0419/152847.349:ERROR:device_event_log_impl.cc(214)] [15:28:47.350] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 15:29:44.152 [11480:15400:0419/152944.151:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+4월 19, 2022 16:00:44.211 [16068:16252:0419/160044.210:ERROR:device_event_log_impl.cc(214)] [16:00:44.210] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+4월 19, 2022 16:01:40.442 [16068:6780:0419/160140.440:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater

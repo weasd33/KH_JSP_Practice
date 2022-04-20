@@ -106,7 +106,7 @@ public class CustomerDAO {
 		return result;
 	} // idCheck() - End
 
-	// customer 등록
+	// Customer 회원 등록
 	public int insertCustomer(CustomerDTO dto) {
 		int result = 0, count = 0;
 		
@@ -141,6 +141,31 @@ public class CustomerDAO {
 		
 		return result;
 	} // insertCustomer() - End
+
+	// Customer 회원 삭제
+	public int deleteCustomer(int no) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "DELETE FROM CUSTOMER WHERE NO = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+			
+			sql = "UPDATE CUSTOMER SET NO = NO - 1 WHERE NO > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	}
 }
 
 

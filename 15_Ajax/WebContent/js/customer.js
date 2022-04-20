@@ -68,7 +68,7 @@ $(function() {
 			data : $("#inForm").serialize(),
 			success : function(data) {
 				if(data > 0) {
-					alert('Success!!');
+					alert('Insert Success');
 					
 					// 가입 완료 후 다시 전체 레코드 출력
 					getData();
@@ -78,7 +78,7 @@ $(function() {
 						$(this).val("");
 					});
 				} else {
-					alert('Fail...');
+					alert('Insert Fail');
 				}
 			},
 			error : function() {
@@ -86,6 +86,28 @@ $(function() {
 			}
 		});
 	}); // 가입 - End
+	
+	// 삭제 버튼 클릭 시 이벤트 적용
+	// 삭제 버튼은 동적으로 생성된 요소는 제이쿼리에서 on() 함수를 이용해야 함.
+	// 형식) on("click 이나 change 같은 이벤트", "이벤트가 적용 선택자 또는 태그", 동작함수(익명함수))
+	$("table").on("click", "#del", function() {
+		$.ajax({
+			url : "/15_Ajax/delete.do",
+			datatype : "text",
+			data : "no=" + $(this).attr("num"),
+			success : function(data) {
+				if(data > 0) {
+					alert('Delete Success');
+					getData();
+				} else {
+					alert('Delete Fail');
+				}
+			},
+			error : function() {
+				alert('Error...');
+			}
+		});
+	});
 	
 	getData();
 	

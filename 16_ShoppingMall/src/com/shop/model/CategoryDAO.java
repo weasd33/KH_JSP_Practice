@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -80,4 +82,33 @@ public class CategoryDAO {
 		
 		return result;
 	} // insertCategory() - End
+
+	// 카테고리 전체 목록 조회
+	public List<CategoryDTO> getCategoryList() {
+		List<CategoryDTO> list = new ArrayList<CategoryDTO>();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM SHOP_CATEGORY ORDER BY CATEGORY_NUM DESC";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CategoryDTO dto = new CategoryDTO();
+				
+				dto.setCategory_num(rs.getInt("CATEGORY_NUM"));
+				dto.setCategory_code(rs.getString("CATEGORY_CODE"));
+				dto.setCategory_name(rs.getString("CATEGORY_NAME"));
+				
+				list.add(dto);
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return list;
+	} // getCategoryList() - End
 }

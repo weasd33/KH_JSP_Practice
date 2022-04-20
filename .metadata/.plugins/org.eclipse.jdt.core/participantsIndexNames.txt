@@ -1,4 +1,6 @@
 INDEX VERSION 1.131
+C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3649981722.index
+\16_ShoppingMall\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3279537953.index
 \11_Board_MVC2\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1299842980.index
@@ -17,5 +19,9 @@ C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch
 \14_Board_FileUpload\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3568603208.index
 \15_Ajax\src
+C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\156426742.index
+\16_ShoppingMall\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3636019022.index
 \14_Board_FileUpload\src
+C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3801275343.index
+\16_ShoppingMall\src

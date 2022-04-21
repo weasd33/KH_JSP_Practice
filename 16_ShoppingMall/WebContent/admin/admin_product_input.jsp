@@ -46,19 +46,19 @@
 					<td><input name="p_company"></td>
 				</tr>
 				<tr>
-					<th>상품 이미지</th>
+					<th>이미지</th>
 					<td><input type="file" name="p_image"></td>
 				</tr>
 				<tr>
-					<th>상품 수량</th>
+					<th>수 량</th>
 					<td><input type="number" name="p_qty" min="1" max="100"></td>
 				</tr>
 				<tr>
-					<th>상품 가격</th>
+					<th>가 격</th>
 					<td><input name="p_price" maxlength="8"></td>
 				</tr>
 				<tr>
-					<th>상품 사양</th>
+					<th>사 양</th>
 					<td>
 						<select name="p_spec">
 							<option value="none" selected>일반</option>
@@ -69,13 +69,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th>상품 소개</th>
+					<th>소 개</th>
 					<td>
 						<textarea rows="7" cols="30" name="p_content"></textarea>
 					</td>
 				</tr>
 				<tr>
-					<th>상품 포인트</th>
+					<th>포인트</th>
 					<td><input name="p_point"></td>
 				</tr>
 				

@@ -125,4 +125,70 @@ public class ProductDAO {
 		
 		return list;
 	} // getProductList() - End
+
+	// 제품 번호에 해당하는 상품 상세 정보
+	public ProductDTO productContent(int product_num) {
+		ProductDTO dto = new ProductDTO();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM SHOP_PRODUCTS WHERE PNUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setPnum(rs.getInt("PNUM"));
+				dto.setPname(rs.getString("PNAME"));
+				dto.setPcategory_fk(rs.getString("PCATEGORY_FK"));
+				dto.setPcompany(rs.getString("PCOMPANY"));
+				dto.setPimage(rs.getString("PIMAGE"));
+				dto.setPqty(rs.getInt("PQTY"));
+				dto.setPrice(rs.getInt("PRICE"));
+				dto.setPspec(rs.getString("PSPEC"));
+				dto.setPcontents(rs.getString("PCONTENTS"));
+				dto.setPoint(rs.getInt("POINT"));
+				dto.setPinputdate(rs.getString("PINPUTDATE"));
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return dto;
+	} // productContent() - End
+
+	// 상품 수정
+	public int updateProduct(ProductDTO dto) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "UPDATE SHOP_PRODUCTS SET"
+					+ " PIMAGE = ?,"
+					+ " PQTY = ?,"
+					+ " PRICE = ?,"
+					+ " PSPEC = ?,"
+					+ " PCONTENTS = ?,"
+					+ " POINT = ? WHERE PNUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getPimage());
+			pstmt.setInt(2, dto.getPqty());
+			pstmt.setInt(3, dto.getPrice());
+			pstmt.setString(4, dto.getPspec());
+			pstmt.setString(5, dto.getPcontents());
+			pstmt.setInt(6, dto.getPoint());
+			pstmt.setInt(7, dto.getPnum());
+			
+			result = pstmt.executeUpdate();
+
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // updateProduct() - End
 }

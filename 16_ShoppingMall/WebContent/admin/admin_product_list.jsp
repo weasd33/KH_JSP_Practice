@@ -18,7 +18,7 @@
 		
 		<table border="1" cellspacing="0" width="80%">
 			<tr bgcolor="#ffcc00">
-				<th>PNo.</th> <th>카테고리 코드</th> <th>제품명</th> 
+				<th>PNo.</th> <th>카테고리 코드</th> <th>상품명</th> 
 				<th>이미지</th> <th>가 격</th> <th>수 량</th>
 				<th>제조사</th> <th>등록일</th> <th>수 정&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;삭제</th>
 			</tr>
@@ -33,7 +33,7 @@
 						<td>
 							<img src="<%=request.getContextPath() %>/upload/${dto.getPimage() }" width="60" height="50">
 						 </td>
-						<td> <fmt:formatNumber value="${dto.getPrice() }" /> </td>
+						<td> <fmt:formatNumber value="${dto.getPrice() }" />원</td>
 						<td>${dto.getPqty() }</td>
 						<td>${dto.getPcompany() }</td>
 						<td>${dto.getPinputdate().substring(0, 10) }</td>

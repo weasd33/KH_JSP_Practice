@@ -27,10 +27,6 @@ public class AdminCartInputOkAction implements Action {
 		PrintWriter out = response.getWriter();
 		
 		if(check > 0) {
-			out.print("<script>");
-			out.print("alert('Success!!')");
-			out.print("<script>");		
-			
 			// 카테고리 등록 후 카테고리 목록으로 이동
 			forward.setRedirect(true);
 			forward.setPath("admin_cart_list.do");

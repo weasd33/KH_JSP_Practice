@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="sun.tools.jconsole.ConnectDialog"/>
-    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-    <fullyQualifiedTypeName name="java.beans.Statement"/>
-    <fullyQualifiedTypeName name="com.khie.model.DeptDTO"/>
-    <fullyQualifiedTypeName name="com.khie.model.DeptDAO"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="org.apache.jasper.compiler.Node.ForwardAction"/>
@@ -49,14 +44,20 @@
     <fullyQualifiedTypeName name="com.reply.model.BbsDAO"/>
     <fullyQualifiedTypeName name="com.reply.action.ActionForward"/>
     <fullyQualifiedTypeName name="com.upload.action.Action"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
     <fullyQualifiedTypeName name="java.util.Calendar"/>
     <fullyQualifiedTypeName name="com.upload.model.UploadDTO"/>
     <fullyQualifiedTypeName name="com.upload.model.UploadDAO"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="com.upload.action.ActionForward"/>
     <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.member.model.CustomerDTO"/>
+    <fullyQualifiedTypeName name="com.member.model.CustomerDAO"/>
+    <fullyQualifiedTypeName name="com.shop.model.AdminDAO"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.shop.model.CategoryDAO"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.shop.model.CategoryDTO"/>
+    <fullyQualifiedTypeName name="com.shop.controller.ActionForward"/>
 </qualifiedTypeNameHistroy>

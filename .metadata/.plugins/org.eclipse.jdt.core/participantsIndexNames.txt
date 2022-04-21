@@ -19,6 +19,8 @@ C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch
 \14_Board_FileUpload\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3568603208.index
 \15_Ajax\src
+C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1869192093.index
+\16_ShoppingMall\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\156426742.index
 \16_ShoppingMall\src
 C:\NCS\java\workspace(jsp)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3636019022.index

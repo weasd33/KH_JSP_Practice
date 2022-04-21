@@ -9,6 +9,8 @@
 
 	ul li {
 		list-style: none;
+		display: inline-block;
+		margin-left: 80px;
 	}
 
 </style>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -86,4 +88,41 @@ public class ProductDAO {
 		
 		return result;
 	} // insertProduct() - End
+
+	// 상품 전체 목록 조회
+	public List<ProductDTO> getProductList() {
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM SHOP_PRODUCTS ORDER BY PNUM DESC";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				
+				dto.setPnum(rs.getInt("PNUM"));
+				dto.setPname(rs.getString("PNAME"));
+				dto.setPcategory_fk(rs.getString("PCATEGORY_FK"));
+				dto.setPcompany(rs.getString("PCOMPANY"));
+				dto.setPimage(rs.getString("PIMAGE"));
+				dto.setPqty(rs.getInt("PQTY"));
+				dto.setPrice(rs.getInt("PRICE"));
+				dto.setPspec(rs.getString("PSPEC"));
+				dto.setPcontents(rs.getString("PCONTENTS"));
+				dto.setPoint(rs.getInt("POINT"));
+				dto.setPinputdate(rs.getString("PINPUTDATE"));
+				
+				list.add(dto);
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return list;
+	} // getProductList() - End
 }

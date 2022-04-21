@@ -82,7 +82,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value="상품등록">&nbsp;&nbsp;&nbsp;
-						<input type="reset" value="다시작성"> 
+						<input type="reset" value="다시작성">&nbsp;&nbsp;&nbsp;
 						<input type="button" value="취소" onclick="history.back()"> 
 					</td>
 				</tr>

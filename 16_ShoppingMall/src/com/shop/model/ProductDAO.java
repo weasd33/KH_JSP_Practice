@@ -191,4 +191,32 @@ public class ProductDAO {
 		
 		return result;
 	} // updateProduct() - End
+
+	// 상품 삭제
+	public int deleteProduct(int product_num) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "DELETE FROM SHOP_PRODUCTS WHERE PNUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			
+			result = pstmt.executeUpdate();
+			
+			// 시퀀스
+			sql = "UPDATE SHOP_PRODUCTS SET PNUM = PNUM - 1 WHERE PNUM > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, product_num);
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteProduct() - End
 }

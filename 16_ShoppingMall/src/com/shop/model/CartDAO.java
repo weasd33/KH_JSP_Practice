@@ -122,6 +122,34 @@ public class CartDAO {
 		
 		return list;
 	} // getCartList() - End
+
+	// 장바구니 번호에 해당하는 상품 삭제
+	public int deleteCart(int cart_num) {
+		int result = 0;
+		
+		try {
+			openConn();
+			
+			sql = "DELETE FROM SHOP_CART WHERE CART_NUM = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cart_num);
+			
+			result = pstmt.executeUpdate();
+			
+			sql = "UPDATE SHOP_CART SET"
+					+ " CART_NUM = CART_NUM - 1 WHERE CART_NUM > ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cart_num);
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return result;
+	} // deleteCart() - End
 }
 
 

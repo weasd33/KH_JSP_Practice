@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="org.apache.jasper.compiler.Node.ForwardAction"/>
-    <fullyQualifiedTypeName name="com.sun.org.apache.xml.internal.serialize.Printer"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.product.controller.SelectProduct"/>
     <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
     <fullyQualifiedTypeName name="com.product.model.ProductDTO"/>
@@ -54,10 +49,15 @@
     <fullyQualifiedTypeName name="com.member.model.CustomerDTO"/>
     <fullyQualifiedTypeName name="com.member.model.CustomerDAO"/>
     <fullyQualifiedTypeName name="com.shop.model.AdminDAO"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="com.shop.model.CategoryDAO"/>
+    <fullyQualifiedTypeName name="com.shop.model.CategoryDTO"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="com.shop.model.CategoryDTO"/>
+    <fullyQualifiedTypeName name="com.shop.model.ProductDTO"/>
+    <fullyQualifiedTypeName name="com.shop.model.ProductDAO"/>
+    <fullyQualifiedTypeName name="com.shop.model.CategoryDAO"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.shop.model.UserDAO"/>
     <fullyQualifiedTypeName name="com.shop.controller.ActionForward"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="sun.tools.tree.ArrayAccessExpression"/>
 </qualifiedTypeNameHistroy>

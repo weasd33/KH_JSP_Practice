@@ -219,4 +219,42 @@ public class ProductDAO {
 		
 		return result;
 	} // deleteProduct() - End
+	
+	// 카테고리 코드에 해당하는 제품의 전체 리스트를 조회
+	public List<ProductDTO> getProductList(String product_code) {
+		List<ProductDTO> list = new ArrayList<ProductDTO>();
+		
+		try {
+			openConn();
+			
+			sql = "SELECT * FROM SHOP_PRODUCTS WHERE PCATEGORY_FK = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, product_code);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				
+				dto.setPnum(rs.getInt("PNUM"));
+				dto.setPname(rs.getString("PNAME"));
+				dto.setPcategory_fk(rs.getString("PCATEGORY_FK"));
+				dto.setPcompany(rs.getString("PCOMPANY"));
+				dto.setPimage(rs.getString("PIMAGE"));
+				dto.setPqty(rs.getInt("PQTY"));
+				dto.setPrice(rs.getInt("PRICE"));
+				dto.setPspec(rs.getString("PSPEC"));
+				dto.setPcontents(rs.getString("PCONTENTS"));
+				dto.setPoint(rs.getInt("POINT"));
+				dto.setPinputdate(rs.getString("PINPUTDATE"));
+				
+				list.add(dto);
+			}
+			
+			rs.close(); pstmt.close(); con.close();
+		} catch (SQLException e) { e.printStackTrace(); }
+		
+		return list;
+	} // getProductList() - End
 }
